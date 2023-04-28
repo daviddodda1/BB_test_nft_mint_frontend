@@ -5,7 +5,7 @@ import Web3 from "web3";
 import Card from "./card";
 import { ERC721_ABI } from "./erc721";
 
-const address = "0x70a3C6C757e28863F37522386d66105738C88e73";
+const address = "0xb16799BbD5e1C040E3c283Ec11E698046Fe4AF02";
 
 const App = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
@@ -61,8 +61,8 @@ const App = () => {
         // @ts-ignore
         window.ethereum.on("networkChanged", function (networkId) {
           // Time to reload your interface with the new networkId
-          if (networkId != 5) {
-            alert("Please switch to Goerli Test Network.");
+          if (networkId != 80001) {
+            alert("Please switch to Mumbai Poligon Test Network.");
           }
         });
       } catch (error) {
@@ -97,7 +97,7 @@ const App = () => {
           },
         };
         const resPonse = await axios.get(
-          `https://deep-index.moralis.io/api/v2/${account}/nft?chain=goerli&format=decimal${queryUrl}`,
+          `https://deep-index.moralis.io/api/v2/${account}/nft?chain=mumbai&format=decimal${queryUrl}`,
           options
         );
         console.log({ data: resPonse.data.result });
@@ -225,7 +225,7 @@ const App = () => {
               text-align: center;
             `}
           >
-            Connected to {account}
+            Connected to {account} (Mumbai Poligon Testnet)
             <br />
             <button onClick={() => disconnectWallet()}>
               disconnect wallet
