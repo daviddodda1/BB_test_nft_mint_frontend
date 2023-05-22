@@ -40,10 +40,11 @@ const App = () => {
     if (window.ethereum) {
       try {
 
-
+        // @ts-ignore
         if (window.ethereum.networkVersion !== "80001") {
           alert("Please connect to Polygon Mumbai Testnet");
           // Prompt user to switch to Polygon Mumbai testnet
+          // @ts-ignore
           const switchNetwork = await window.ethereum.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: "0x13881" }],
@@ -200,10 +201,11 @@ const App = () => {
       try {
 
         // web3js call to create init tx
-
+        // @ts-ignore
         if (window.ethereum.networkVersion !== "80001") {
           alert("Please connect to Polygon Mumbai Testnet");
           // Prompt user to switch to Polygon Mumbai testnet
+          // @ts-ignore
           const switchNetwork = await window.ethereum.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: "0x13881" }],
@@ -216,7 +218,7 @@ const App = () => {
             console.log("User canceled or unable to switch network");
           }
         }
-
+        // @ts-ignore
         const web3Temp = new Web3(window.ethereum);
 
 
