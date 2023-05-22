@@ -39,6 +39,24 @@ const App = () => {
     // @ts-ignore
     if (window.ethereum) {
       try {
+
+        if (window.ethereum.networkVersion !== "5") {
+          alert("Please connect to Goerli Ethereum Testnet");
+          // Prompt user to switch to Goerli Ethereum testnet
+          const switchNetwork = await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x5" }],
+          });
+        
+          if (switchNetwork) {
+            // Success, user switched to Goerli Ethereum testnet
+          } else {
+            // User canceled or unable to switch network
+            console.log("User canceled or unable to switch network");
+          }
+        }
+
+
         // @ts-ignore
         await window.ethereum.request({ method: "eth_requestAccounts" });
         // @ts-ignore
