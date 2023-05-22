@@ -39,10 +39,11 @@ const App = () => {
     // @ts-ignore
     if (window.ethereum) {
       try {
-
+        // @ts-ignore
         if (window.ethereum.networkVersion !== "5") {
           alert("Please connect to Goerli Ethereum Testnet");
           // Prompt user to switch to Goerli Ethereum testnet
+          // @ts-ignore
           const switchNetwork = await window.ethereum.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: "0x5" }],
