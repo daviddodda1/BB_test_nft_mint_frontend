@@ -39,6 +39,24 @@ const App = () => {
     // @ts-ignore
     if (window.ethereum) {
       try {
+
+
+        if (window.ethereum.networkVersion !== "80001") {
+          alert("Please connect to Polygon Mumbai Testnet");
+          // Prompt user to switch to Polygon Mumbai testnet
+          const switchNetwork = await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x13881" }],
+          });
+
+          if (switchNetwork) {
+            // Success, user switched to Polygon Mumbai testnet
+          } else {
+            // User canceled or unable to switch network
+            console.log("User canceled or unable to switch network");
+          }
+        }
+
         // @ts-ignore
         await window.ethereum.request({ method: "eth_requestAccounts" });
         // @ts-ignore
@@ -180,6 +198,28 @@ const App = () => {
     if (web3) {
       setIsNFTMintingInProgress(true);
       try {
+
+        // web3js call to create init tx
+
+        if (window.ethereum.networkVersion !== "80001") {
+          alert("Please connect to Polygon Mumbai Testnet");
+          // Prompt user to switch to Polygon Mumbai testnet
+          const switchNetwork = await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x13881" }],
+          });
+
+          if (switchNetwork) {
+            // Success, user switched to Polygon Mumbai testnet
+          } else {
+            // User canceled or unable to switch network
+            console.log("User canceled or unable to switch network");
+          }
+        }
+
+        const web3Temp = new Web3(window.ethereum);
+
+
         const contract = new web3.eth.Contract(ERC721_ABI, address);
         const tx = await contract.methods.mint().send({ from: account });
 
